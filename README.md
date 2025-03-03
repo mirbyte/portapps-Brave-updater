@@ -20,5 +20,8 @@ the folder should look something like this:
 <br>
 <br>
 
-Source of portable Brave application:
-portapps.io/app/brave-portable/
+[youtube tutorial](https://www.youtube.com/watch?v=UAM5LLxb6xg)
+
+<br>
+
+[Source of portable Brave application](portapps.io/app/brave-portable/)
