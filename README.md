@@ -1,1 +1,1 @@
-# portapps-brave-updater
+# portapps portable brave updating scripts
