@@ -6,8 +6,11 @@
 3. Done, you can delete the backup files if everything works as expected
 
 <br>
+<br>
 
 the folder should look something like this:
+
+
 ![example](https://github.com/user-attachments/assets/7611e48e-369b-417b-b7ca-4000c4181e3d)
 
 <br>
