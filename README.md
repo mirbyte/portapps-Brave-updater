@@ -1,3 +1,3 @@
-# Brave portable updating scripts
+# portapps Brave updating scripts
 
 portapps.io/app/brave-portable/
