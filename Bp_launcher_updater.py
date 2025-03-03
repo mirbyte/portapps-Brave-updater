@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 
 os.system('title portapps.io brave-portable.exe updater v1.0 (mirbyte)')
 
+os.makedirs("log", exist_ok=True)
 log_file = os.path.join(os.getcwd(), "log", "launcher_updater_log.txt")
 
 
