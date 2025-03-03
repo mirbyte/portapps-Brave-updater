@@ -1,1 +1,1 @@
-# portapps portable brave updating scripts
+# portapps.io Brave updating scripts
