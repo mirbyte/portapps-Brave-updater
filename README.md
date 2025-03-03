@@ -1,9 +1,10 @@
 # portapps Brave updating scripts
 
 ### Usage
-1. Extract & copy the contents of the Release zip to the folder containing "brave-portable.exe"
-2. Click and run both .exe files
-3. Done, you can delete the backup files if everything works as expected
+1. Download the zip from the Releases
+2. Extract & copy the contents to the folder containing "brave-portable.exe"
+3. Click and run both .exe files
+4. Done, you can delete the backup files if everything works as expected
 
 <br>
 <br>
