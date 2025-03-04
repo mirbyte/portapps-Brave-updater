@@ -26,4 +26,4 @@ the folder should look something like this:
 
 <br>
 
-[Source of portable Brave application](portapps.io/app/brave-portable/)
+[Source of portable Brave application](https://portapps.io/app/brave-portable/)
