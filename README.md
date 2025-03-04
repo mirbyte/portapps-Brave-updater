@@ -22,7 +22,7 @@ the folder should look something like this:
 <br>
 <br>
 
-[Youtube Tutorial](https://www.youtube.com/watch?v=UAM5LLxb6xg)
+[Youtube tutorial](https://www.youtube.com/watch?v=UAM5LLxb6xg)
 
 <br>
 
