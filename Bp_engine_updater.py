@@ -47,7 +47,8 @@ def get_latest_brave_version():
         soup = BeautifulSoup(response.text, "html.parser")
 
         # first <h3> tag with an id starting with "desktop-release-notes-"
-        release_notes = soup.find("h3", id=lambda x: x and x.startswith("desktop-release-notes-"))
+        # release_notes = soup.find("h3", id=lambda x: x and x.startswith("desktop-release-notes-"))
+        release_notes = soup.find("h3", id=lambda x: bool(x and x.startswith("desktop-release-notes-")))
         if release_notes:
             # version number from the text
             version = release_notes.text.split("Release Notes v")[1].split()[0]
