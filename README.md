@@ -5,11 +5,18 @@
 [![Latest Release](https://img.shields.io/github/release/mirbyte/portapps-brave-updater.svg?color=orange&maxAge=86400)](https://github.com/mirbyte/portapps-brave-updater/releases/latest)
 ![LastCommit](https://img.shields.io/github/last-commit/mirbyte/portapps-brave-updater?color=orange&label=repo+updated)
 
-### Usage
+## Usage
 1. Download the zip from the [Releases](https://github.com/mirbyte/portapps-brave-updater/releases)
 2. Extract & copy the contents to the folder containing "brave-portable.exe"
 3. Click and run both .exe files
 4. Done, you can delete the backup files if everything works as expected
+
+
+## Notice of Non-Affiliation and Disclaimer
+I am not affiliated, associated, authorized, endorsed by, or in any way officially connected with Brave™, Portapps, or any of their subsidiaries or their affiliates.
+The official Brave™ website can be found at https://www.brave.com/.
+The name Brave™ as well as related names, marks, emblems and images are registered trademarks of their respective owners.
+
 
 <br>
 <br>
