@@ -5,7 +5,7 @@
 [![Latest Release](https://img.shields.io/github/release/mirbyte/portapps-brave-updater.svg?color=orange&maxAge=86400)](https://github.com/mirbyte/portapps-brave-updater/releases/latest)
 ![LastCommit](https://img.shields.io/github/last-commit/mirbyte/portapps-brave-updater?color=orange&label=repo+updated)
 
-This is an automatic updater for the [brave portable](https://github.com/portapps/brave-portable) installation.
+This is an automatic updater for the [brave portable](https://github.com/portapps/brave-portable) installation. Major update coming in the next few days.
 
 ## Usage
 1. Download the zip from the [releases](https://github.com/mirbyte/portapps-brave-updater/releases)
