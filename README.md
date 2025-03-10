@@ -32,7 +32,7 @@ the folder should look something like this:
 <br>
 <br>
 
-[Youtube tutorial](https://www.youtube.com/watch?v=UAM5LLxb6xg)
+[Youtube tutoria (outdated but you'll get the point)l](https://www.youtube.com/watch?v=UAM5LLxb6xg)
 
 <br>
 
