@@ -10,8 +10,8 @@ This is an automatic updater for the [brave portable](https://github.com/portapp
 ## Usage
 1. Download the latest zip from the [releases](https://github.com/mirbyte/portapps-brave-updater/releases)
 2. Extract & copy the contents to the folder containing "brave-portable.exe"
-3. Click and run both .exe files
-4. Done, you can delete the backup files if everything works as expected
+3. Run the .exe file
+4. Done
 
 
 ## Notice of Non-Affiliation and Disclaimer
