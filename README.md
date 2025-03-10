@@ -26,7 +26,8 @@ The name Brave™ as well as related names, marks, emblems and images are regist
 the folder should look something like this:
 
 
-![example](https://github.com/user-attachments/assets/7611e48e-369b-417b-b7ca-4000c4181e3d)
+![example_brave](https://github.com/user-attachments/assets/f9536811-ba6b-404a-b9f3-d184fd3800c7)
+
 
 <br>
 <br>
