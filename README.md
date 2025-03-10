@@ -8,7 +8,7 @@
 This is an automatic updater for the [brave portable](https://github.com/portapps/brave-portable) installation. **NOTE** that on the first run it shows both installed versions as none, and updates them. It's a bit unnessessary but does no harm.
 
 ## Usage
-1. Download the zip from the [releases](https://github.com/mirbyte/portapps-brave-updater/releases)
+1. Download the latest zip from the [releases](https://github.com/mirbyte/portapps-brave-updater/releases)
 2. Extract & copy the contents to the folder containing "brave-portable.exe"
 3. Click and run both .exe files
 4. Done, you can delete the backup files if everything works as expected
