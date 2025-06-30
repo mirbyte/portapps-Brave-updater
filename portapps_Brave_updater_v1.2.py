@@ -13,6 +13,8 @@ from pathlib import Path
 import ctypes
 
 
+# this is ass
+
 # --- DPI Awareness ---
 try:
     ctypes.windll.shcore.SetProcessDpiAwarenessContext(-2)
