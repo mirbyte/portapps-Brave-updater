@@ -8,6 +8,9 @@ from bs4 import BeautifulSoup
 import subprocess
 
 os.system('title portapps.io Brave updater v1.2 (mirbyte)')
+print("github/mirbyte")
+print("")
+print("")
 
 # --- Constants ---
 TIMEOUT_PAGE = 10
