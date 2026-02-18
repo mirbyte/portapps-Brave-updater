@@ -77,7 +77,7 @@ def get_latest_brave_version():
         if release_notes:
             try:
                 version = release_notes.text.split("Release Notes v")[1].split()[0]
-                print(f"Latest Brave version: {version}")
+                print(f"Latest Brave version on website: {version}")
                 print("")
                 log("INFO", f"Latest Brave version: {version}")
                 return version
