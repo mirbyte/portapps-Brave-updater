@@ -2,7 +2,6 @@
 [![License](https://img.shields.io/github/license/mirbyte/portapps-brave-updater?color=orange&maxAge=604800)](https://raw.githubusercontent.com/mirbyte/portapps-brave-updater/master/LICENSE)
 ![Size](https://img.shields.io/github/repo-size/mirbyte/portapps-brave-updater?label=size&color=orange&maxAge=86400)
 [![Download Count](https://img.shields.io/github/downloads/mirbyte/portapps-brave-updater/total?color=orange&maxAge=86400)](https://github.com/mirbyte/portapps-brave-updater/releases)
-[![Latest Release](https://img.shields.io/github/release/mirbyte/portapps-brave-updater.svg?color=orange&maxAge=86400)](https://github.com/mirbyte/portapps-brave-updater/releases/latest)
 ![LastCommit](https://img.shields.io/github/last-commit/mirbyte/portapps-brave-updater?color=orange&label=repo+updated)
 
 This is an automatic updater for the [brave portable](https://github.com/portapps/brave-portable) installation. **NOTE** that on the first run it shows both installed versions as none, and updates them. It's a bit unnessessary but does no harm.
