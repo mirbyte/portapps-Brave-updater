@@ -6,8 +6,14 @@ from datetime import datetime
 import time
 from bs4 import BeautifulSoup
 import subprocess
+from colorama import init, Fore, Style
 
-os.system('title portapps.io Brave updater v1.2 (mirbyte)')
+init(autoreset=True)
+
+ORANGE = "\033[38;5;208m"
+
+os.system('title portapps.io Brave updater v1.3 (mirbyte)')
+print(ORANGE + "portapps.io Brave updater v1.3" + Style.RESET_ALL)
 print("github/mirbyte")
 print("")
 print("")
@@ -28,7 +34,7 @@ with open(event_log_file, "w") as f:
 def log(level, msg):
     line = f"[{datetime.now().strftime('%Y-%m-%d %H:%M')}] {level}: {msg}"
     if level == "ERROR":
-        print(line)
+        print(Fore.RED + line)
     with open(event_log_file, "a") as f:
         f.write(line + "\n")
 
@@ -71,26 +77,21 @@ def get_latest_launcher_version():
         return None
 
 def get_latest_brave_version():
-    url = "https://brave.com/latest/"
+    url = "https://api.github.com/repos/brave/brave-browser/releases/latest"
     try:
-        response = requests.get(url, timeout=TIMEOUT_PAGE)
+        response = requests.get(url, timeout=TIMEOUT_PAGE, headers={"Accept": "application/vnd.github+json"})
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        release_notes = soup.find("h3", id=lambda x: x and x.startswith("desktop-release-notes-"))
-        if release_notes:
-            try:
-                version = release_notes.text.split("Release Notes v")[1].split()[0]
-                print(f"Latest Brave version on website: {version}")
-                print("")
-                log("INFO", f"Latest Brave version: {version}")
-                return version
-            except (IndexError, AttributeError) as e:
-                log("ERROR", f"Failed to parse Brave version from page text: {e}")
-                return None
-        log("ERROR", "Could not find the latest Brave version on the page")
-        return None
+        tag = response.json().get("tag_name", "")
+        version = tag.lstrip("v")
+        if not version:
+            log("ERROR", "Could not parse Brave version from GitHub API response")
+            return None
+        print(f"Latest Brave version: {version}")
+        print("")
+        log("INFO", f"Latest Brave version: {version}")
+        return version
     except requests.RequestException as e:
-        log("ERROR", f"Error fetching Brave release notes: {e}")
+        log("ERROR", f"Error fetching Brave version from GitHub API: {e}")
         return None
 
 # --- Downloaders ---
@@ -111,6 +112,7 @@ def download_portable_launcher(version, output_path):
                     download_speed = downloaded_size / (elapsed_time * 1024 * 1024)
                     percent_completed = (downloaded_size / total_size) * 100
                     print(f"Downloaded: {percent_completed:.2f}% | Speed: {download_speed:.2f} MB/s", end="\r")
+            print()
             return True
         except Exception as e:
             log("ERROR", f"Error writing launcher file: {e}")
@@ -122,7 +124,7 @@ def download_portable_launcher(version, output_path):
 def download_brave_installer(version, output_path):
     urls = [
         "https://brave-browser-downloads.s3.brave.com/latest/brave_installer-x64.exe",
-        "https://brave-browser-downloads.s3.brave.com/latest/brave_installer-x64.exe",  # TODO: add alternate URL
+        "https://brave-browser-downloads.s3.brave.com/latest/brave_installer-x64.exe", # TODO: add alternate URL
     ]
     for i, url in enumerate(urls):
         try:
@@ -144,6 +146,7 @@ def download_brave_installer(version, output_path):
                         download_speed = downloaded_size / (elapsed_time * 1024 * 1024)
                         percent_completed = (downloaded_size / total_size) * 100
                         print(f"Downloaded: {percent_completed:.2f}% | Speed: {download_speed:.2f} MB/s", end="\r")
+                print()
                 return True
             except Exception as e:
                 log("ERROR", f"Error writing installer file: {e}")
@@ -153,7 +156,7 @@ def download_brave_installer(version, output_path):
                 print("\nTrying alternate source...")
             else:
                 log("ERROR", f"All download attempts failed: {e}")
-    return False
+                return False
 
 # --- Utilities ---
 def is_file_locked(filepath):
@@ -255,7 +258,7 @@ if launcher_update_needed:
     launcher_display = last_launcher_version or "None"
     update_message += f"\n- Launcher: {launcher_version} (Installed: {launcher_display})"
 print(update_message)
-log("INFO", update_message.replace("\n", " | "))
+log("INFO", update_message.replace(ORANGE, "").replace(Style.RESET_ALL, "").replace("\n", " | "))
 
 launcher_updated = False
 
@@ -273,9 +276,9 @@ if portable_mode and launcher_update_needed:
             backup_launcher = os.path.join(os.getcwd(), "brave-portable.exe.bak")
             if os.path.exists(launcher_portable_exe):
                 shutil.copy2(launcher_portable_exe, backup_launcher)
-                os.remove(launcher_portable_exe)
+            os.remove(launcher_portable_exe)
             os.rename(temp_launcher_portable_exe, launcher_portable_exe)
-            print("brave-portable.exe updated successfully.")
+            print(Fore.GREEN + "brave-portable.exe updated successfully.")
             log("INFO", f"Launcher updated to {launcher_version}")
             launcher_updated = True
             update_log(launcher_version, is_launcher=True)
@@ -404,7 +407,7 @@ if standard_update_needed:
         input("\nPress Enter to exit...")
         sys.exit(1)
 
-    print("Files copied successfully.")
+    print(Fore.GREEN + "Files copied successfully.")
     log("INFO", f"Brave updated to {latest_version}")
     update_log(latest_version)
 
@@ -430,9 +433,9 @@ if standard_update_needed:
         except Exception as e:
             log("ERROR", f"Failed to delete backup {backup}: {e}")
 
-    print("")
-    print("Update complete.")
-    log("INFO", "Update complete")
+print("")
+print(Fore.GREEN + "Update complete.")
+log("INFO", "Update complete")
 
 print("")
 print("")
