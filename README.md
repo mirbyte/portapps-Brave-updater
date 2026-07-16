@@ -19,6 +19,11 @@ The official Brave™ website can be found at https://www.brave.com/.
 The name Brave™ as well as related names, marks, emblems and images are registered trademarks of their respective owners.
 
 
+## Bundled 7-Zip
+This repo includes an unmodified copy of 7-Zip. It is used to extract the official Brave installer. No changes were made to the 7-Zip binaries.
+
+7-Zip is Copyright (C) 1999-2026 Igor Pavlov, licensed under the GNU LGPL.
+
 <br>
 <br>
 
