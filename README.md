@@ -24,7 +24,8 @@ This repo includes an unmodified copy of 7-Zip. It is used to extract the offici
 
 7-Zip is Copyright (C) 1999-2026 Igor Pavlov, licensed under the GNU LGPL.
 
-<br>
+---
+
 <br>
 
 the folder should look something like this:
