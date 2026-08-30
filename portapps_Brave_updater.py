@@ -12,8 +12,8 @@ init(autoreset=True)
 
 ORANGE = "\033[38;5;208m"
 
-os.system('title portapps.io Brave updater v1.3 (mirbyte)')
-print(ORANGE + "portapps.io Brave updater v1.3" + Style.RESET_ALL)
+os.system('title portapps.io Brave updater v1.4 (mirbyte)')
+print(ORANGE + "portapps.io Brave updater v1.4" + Style.RESET_ALL)
 print("github/mirbyte")
 print("")
 print("")
@@ -22,11 +22,16 @@ print("")
 TIMEOUT_PAGE = 10
 TIMEOUT_DOWNLOAD = (10, 60)
 
+if getattr(sys, "frozen", False):
+    BASE_DIR = os.path.dirname(os.path.abspath(sys.executable))
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # --- Logging setup ---
-os.makedirs("log", exist_ok=True)
-log_file = os.path.join("log", "brave_updater_log.txt")
-portable_log_file = os.path.join("log", "launcher_updater_log.txt")
-event_log_file = os.path.join("log", "updater_events.log")
+os.makedirs(os.path.join(BASE_DIR, "log"), exist_ok=True)
+log_file = os.path.join(BASE_DIR, "log", "brave_updater_log.txt")
+portable_log_file = os.path.join(BASE_DIR, "log", "launcher_updater_log.txt")
+event_log_file = os.path.join(BASE_DIR, "log", "updater_events.log")
 
 with open(event_log_file, "w") as f:
     f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M')}] INFO: Updater started\n")
@@ -190,7 +195,7 @@ def rmtree_with_retry(path, retries=5, delay=2):
     return False
 
 def extract_archive(archive_path, output_dir):
-    seven_zip_path = os.path.join(os.getcwd(), "7zip", "7z.exe")
+    seven_zip_path = os.path.join(BASE_DIR, "7zip", "7z.exe")
     if not os.path.isfile(seven_zip_path):
         log("ERROR", f"7-Zip not found at {seven_zip_path}")
         return False
@@ -212,7 +217,7 @@ def find_file_or_folder(base_path, target_name, find_dir=False):
     return None
 
 # --- Main logic ---
-current_folder = os.path.basename(os.getcwd())
+current_folder = os.path.basename(BASE_DIR)
 if "brave" not in current_folder.lower():
     log("ERROR", "Script not run from a folder containing 'brave' in its name")
     print("Error: This script must be run from a folder containing 'brave' in its name.")
@@ -226,7 +231,7 @@ if not latest_version:
     input("\nPress Enter to exit...")
     sys.exit(1)
 
-launcher_portable_exe = os.path.join(os.getcwd(), "brave-portable.exe")
+launcher_portable_exe = os.path.join(BASE_DIR, "brave-portable.exe")
 portable_mode = os.path.exists(launcher_portable_exe)
 launcher_version = None
 
@@ -263,7 +268,7 @@ log("INFO", update_message.replace(ORANGE, "").replace(Style.RESET_ALL, "").repl
 launcher_updated = False
 
 if portable_mode and launcher_update_needed:
-    temp_launcher_portable_exe = os.path.join(os.getcwd(), "brave-portable-win64.exe")
+    temp_launcher_portable_exe = os.path.join(BASE_DIR, "brave-portable-win64.exe")
     if os.path.exists(temp_launcher_portable_exe):
         print("Removing old temporary files...")
         os.remove(temp_launcher_portable_exe)
@@ -273,7 +278,7 @@ if portable_mode and launcher_update_needed:
                 log("ERROR", "brave-portable.exe is in use - cannot update launcher")
                 print("Error: brave-portable.exe is currently in use. Please close the application and try again.")
                 sys.exit(1)
-            backup_launcher = os.path.join(os.getcwd(), "brave-portable.exe.bak")
+            backup_launcher = os.path.join(BASE_DIR, "brave-portable.exe.bak")
             if os.path.exists(launcher_portable_exe):
                 shutil.copy2(launcher_portable_exe, backup_launcher)
             os.remove(launcher_portable_exe)
@@ -302,7 +307,7 @@ if portable_mode and launcher_update_needed:
         print("Failed to download the launcher.")
 
 if standard_update_needed:
-    installer_exe = os.path.join(os.getcwd(), "brave_setup.exe")
+    installer_exe = os.path.join(BASE_DIR, "brave_setup.exe")
     if os.path.exists(installer_exe):
         os.remove(installer_exe)
 
@@ -316,12 +321,12 @@ if standard_update_needed:
     print("Extracting installer...")
     log("INFO", "Extracting installer")
 
-    exe_extract_folder = os.path.join(os.getcwd(), "portable-temp")
+    exe_extract_folder = os.path.join(BASE_DIR, "portable-temp")
     if os.path.exists(exe_extract_folder):
         shutil.rmtree(exe_extract_folder)
     os.makedirs(exe_extract_folder, exist_ok=True)
 
-    seven_zip_path = os.path.join(os.getcwd(), "7zip", "7z.exe")
+    seven_zip_path = os.path.join(BASE_DIR, "7zip", "7z.exe")
     if not os.path.isfile(seven_zip_path):
         log("ERROR", f"7-Zip not found at {seven_zip_path}")
         print(f"Error: 7-Zip not found at {seven_zip_path}. Please ensure the 7zip folder is present.")
@@ -344,7 +349,7 @@ if standard_update_needed:
     print("Extracting chrome.7z...")
     log("INFO", "Extracting chrome.7z")
 
-    chrome_extract_folder = os.path.join(os.getcwd(), "chrome-temp")
+    chrome_extract_folder = os.path.join(BASE_DIR, "chrome-temp")
     if os.path.exists(chrome_extract_folder):
         shutil.rmtree(chrome_extract_folder)
     os.makedirs(chrome_extract_folder, exist_ok=True)
@@ -375,8 +380,8 @@ if standard_update_needed:
         input("\nPress Enter to exit...")
         sys.exit(1)
 
-    app_folder = os.path.join(os.getcwd(), "app")
-    backup_folder = os.path.join(os.getcwd(), f"app-backup-{datetime.now().strftime('%Y-%m-%d-%H%M%S')}")
+    app_folder = os.path.join(BASE_DIR, "app")
+    backup_folder = os.path.join(BASE_DIR, f"app-backup-{datetime.now().strftime('%Y-%m-%d-%H%M%S')}")
 
     print("Backing up current app folder...")
     log("INFO", f"Backing up app folder to {os.path.basename(backup_folder)}")
@@ -421,12 +426,12 @@ if standard_update_needed:
                 log("ERROR", f"Failed to delete temp file {temp}: {e}")
 
     backup_files = []
-    launcher_backup = os.path.join(os.getcwd(), "brave-portable.exe.bak")
+    launcher_backup = os.path.join(BASE_DIR, "brave-portable.exe.bak")
     if os.path.exists(launcher_backup):
         backup_files.append(launcher_backup)
-    for item in os.listdir(os.getcwd()):
-        if item.startswith("app-backup-") and os.path.isdir(os.path.join(os.getcwd(), item)):
-            backup_files.append(os.path.join(os.getcwd(), item))
+    for item in os.listdir(BASE_DIR):
+        if item.startswith("app-backup-") and os.path.isdir(os.path.join(BASE_DIR, item)):
+            backup_files.append(os.path.join(BASE_DIR, item))
     for backup in backup_files:
         try:
             shutil.rmtree(backup) if os.path.isdir(backup) else os.remove(backup)
